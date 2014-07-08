@@ -14,7 +14,9 @@
   (let [id (.-id textarea)]
     (swap! textareas assoc id
       (js/CodeMirror.fromTextArea textarea
-        #js {:mode "javascript"}))))
+        #js {:mode "javascript"
+             :fontSize 15
+             :lineNumbers true}))))
 
 (set! (.-evaluate js/window.document)
   (fn [id]

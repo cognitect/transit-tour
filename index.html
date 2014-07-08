@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
         <link href="codemirror.css" rel="stylesheet" type="text/css"></link>
         <script src="codemirror.js" type="text/javascript"></script>
         <script src="javascript.js" type="text/javascript"></script>
@@ -11,20 +12,34 @@
             <div class="container">
                 <h2>A Tour of Transit</h2>
                 <p>
-                    This tour introduces the Transit format via
+                    This tour introduces
+                    the <a href="http://transit-format.org">Transit</a>
+                    format via
                     <a href="http://github.com/cognitect/transit-js">transit-js</a>,
                     an implementation of the Transit format for
                     JavaScript. Transit implementations for other
                     languages may provide slightly different APIs that
-                    reflect the idioms of the implementation language
-                    but the semantics of the format must be preserved.
+                    reflect the idioms of the implementation language,
+                    however, the semantics of the format must be preserved.
+                </p>
+                <p>
+                    The following is an interactive guide to
+                    Transit. Press the <font class="eval">Eval</font> button
+                    after each code snippet to evaluate it.
+                </p>
+                <p>
+                    Each example is a
+                    <a href="http://codemirror.net">CodeMirror</a> editor so that
+                    you may edit and try out the transit-js API
+                    youself:
                 </p>
                 <h3>Creating a Reader</h3>
                 <p>
                     Transit implementations support encodings in
-                    JSON, msgpack, or both. transit-js currently only
-                    supports JSON. You can specify what type of reader
-                    you wish to construct:
+                    <a href="http://json.org">JSON</a>, <a href="http://msgpack.org">msgpack</a>,
+                    or both. transit-js currently only supports
+                    JSON. You can specify what type of reader you wish
+                    to construct:
                 </p>
                 <textarea id="create">var r = transit.reader("json");</textarea>
                 <button onclick="evaluate('create')">Eval</button>
@@ -32,26 +47,43 @@
                 <p>
                     Once a reader has been constructed you can read
                     transit wire data. Plain JSON is valid wire data
-                    for transit wire JSON readers:
+                    for transit JSON readers:
                 </p>
-                <textarea id="read">var m = r.read("{\"foo\":\"bar\"}");
+                <textarea id="read">var r = transit.reader("json");
+var m = r.read("{\"foo\":\"bar\"}");
 m["foo"]</textarea>
                 <button onclick="evaluate('read')">Eval</button>
-                <textarea id="read-map">var m = r.read("{\"foo\":\"bar\"}");
+                <p>
+                    All Transit implementations return maps in this
+                    case. However Transit supports encoding richer
+                    keys than strings which is not well supported by
+                    JSON.
+                </p>
+                <textarea id="read-map">var r = transit.reader("json");
+var m = r.read("{\"foo\":\"bar\"}");
 m.get("foo")</textarea>
                 <button onclick="evaluate('read-map')">Eval</button>
+                <h3>Maps</h3>
                 <p>
-                    However instead of returning a JavaScript object
-                    transit-js will return a real hash map. transit-js
-                    hash maps not only support the proposed ECMAScript
-                    6 Map interface, look up is based on value not
-                    only reference which subsumes and supercedes the
+                    transit-js returns proper hash maps. transit-js
+                    hash maps not only support the
+                    proposed <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">ECMAScript
+                    6 Map interface</a>, look up is based on value not
+                    reference which subsumes and supercedes the
                     standard behavior.
                 </p>
-                <h3>Maps</h3>
+                <textarea id="complex-key">var m = transit.map([[1,2], "Works!"]);
+m.get([1,2]);</textarea>
+                <button onclick="evaluate('complex-key')">Eval</button>
+                <p>
+                    The above is impossible under the proposed ES6 Map
+                    specification.
+                </p>
                 <h3>Creating a Writer</h3>
                 <h3>Writing Data</h3>
                 <h3>Caching</h3>
+                <h3>Read handlers</h3>
+                <h3>Write handlers</h3>
             </div>
         </center>
 

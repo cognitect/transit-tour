@@ -3,6 +3,8 @@
 .CodeMirror {
   border: 1px solid #eee;
   height: auto;
+  font-size: 15px;
+  font-family: 'Inconsolata';
 }
 
 .CodeMirror-scroll {
@@ -42,6 +44,7 @@ center .container {
 }
 
 button {
+    font-weight: bold;
     margin: 8px 0 0 0;
     background-color: white;
     border: 1px solid #aaa;
@@ -50,4 +53,14 @@ button {
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+}
+
+.eval {
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+code {
+    font-family: 'Inconsolata';
 }
