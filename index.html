@@ -17,22 +17,23 @@
                     This tour introduces the Transit format via
                     <a href="http://github.com/cognitect/transit-js">transit-js</a>,
                     an implementation of the Transit format for
-                    JavaScript. Transit implementations other
+                    JavaScript. Transit implementations for other
                     languages may provide slightly different APIs that
-                    reflect the idioms of that particular language,
+                    reflect the idioms of the implementation language
                     but the semantics of the format must be preserved.
                 </p>
                 <h3>Creating a Reader</h3>
                 <p>
-                    Transit format currently uses JSON and msgpack for
-                    the wire format. You can specify what type
-                    of reader you wish to construct:
+                    Transit implementations support encodings in
+                    JSON, msgpack, or both. transit-js currently only
+                    supports JSON. You can specify what type of reader
+                    you wish to construct:
                 </p>
                 <textarea id="create"></textarea>
                 <p>
                     Once a reader has been constructed you can read
-                    transit wire data. Note that transit supports
-                    reading plain JSON:
+                    transit wire data. Plain JSON is valid wire data
+                    for transit wire JSON readers:
                 </p>
                 <textarea id="read"></textarea>
                 <p>

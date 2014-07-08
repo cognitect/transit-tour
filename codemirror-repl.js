@@ -4,8 +4,8 @@ CodeMirrorREPL.prototype.isBalanced = function () {
 
 CodeMirrorREPL.prototype.eval = function () {};
 
-function CodeMirrorREPL(textareaId, options) {
-    var textarea = document.getElementById(textareaId);
+function CodeMirrorREPL(textarea, options) {
+    textarea = typeof textarea == "string" ? document.getElementById(textarea) : textarea;
     options = options || {};
     textarea.value = "";
 
