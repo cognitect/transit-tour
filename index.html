@@ -19,8 +19,9 @@
                     an implementation of the Transit format for
                     JavaScript. Transit implementations for other
                     languages may provide slightly different APIs that
-                    reflect the idioms of the implementation language,
-                    however, the semantics of the format must be preserved.
+                    reflect the idioms of the implementation language.
+                    However, regardless of implementation, the
+                    semantics of the format must be preserved.
                 </p>
                 <p>
                     The following is an interactive guide to
@@ -46,18 +47,26 @@
                 <h3>Reading Data</h3>
                 <p>
                     Once a reader has been constructed you can read
-                    transit wire data. Plain JSON is valid wire data
-                    for transit JSON readers:
+                    transit wire data. All JSON is valid wire data
+                    for transit JSON readers.
                 </p>
-                <textarea id="read">var r = transit.reader("json");
+                <p>
+                    We can read JavaScript strings, numbers, and arrays, just like JSON:
+                </p>
+                <textarea id="array-read">var r = transit.reader("json");
+r.read("[1,1.5,\"A string!\"]");</textarea>
+                <button onclick="evaluate('array-read')">Eval</button>
+                <p>
+                    You can also read JavaScript objects:
+                </p>
+                <textarea id="map-read">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");
 m["foo"]</textarea>
-                <button onclick="evaluate('read')">Eval</button>
+                <button onclick="evaluate('map-read')">Eval</button>
                 <p>
-                    All Transit implementations return maps in this
-                    case. However Transit supports encoding richer
-                    keys than strings which is not well supported by
-                    JSON.
+                    Note that a plain JavaScript object was not
+                    returned. JavaScript objects do not support
+                    scalar values as keys beyond strings.
                 </p>
                 <textarea id="read-map">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");
@@ -72,13 +81,23 @@ m.get("foo")</textarea>
                     reference which subsumes and supercedes the
                     standard behavior.
                 </p>
-                <textarea id="complex-key">var m = transit.map([[1,2], "Works!"]);
-m.get([1,2]);</textarea>
+                <textarea id="complex-key">var m = transit.map([new Date(0), "Works!"]);
+m.get(new Date(0));</textarea>
                 <button onclick="evaluate('complex-key')">Eval</button>
                 <p>
                     The above is impossible under the proposed ES6 Map
                     specification.
                 </p>
+                <p>
+                    transit-js supports reading and writing maps with
+                    richer keys - including JavaScript objects,
+                    arrays, and transit-js maps. For example you can read
+                    a map with a date key:
+                </p>
+                <textarea id="complex-key-read">var r = transit.reader("json");
+var m = r.read("{\"~m0\":\"Works!\"}");
+m.get(new Date(0));</textarea>
+                <button onclick="evaluate('complex-key-read')">Eval</button>
                 <h3>Creating a Writer</h3>
                 <h3>Writing Data</h3>
                 <h3>Caching</h3>

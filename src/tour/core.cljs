@@ -26,4 +26,4 @@
           ret  (js/window.eval orig)]
       (if (undefined? ret)
         (.setValue cm (str orig "\n// undefined"))
-        (.setValue cm (str orig "\n// " ret))))))
+        (.setValue cm (str orig "\n// " (.stringify js/JSON ret)))))))
