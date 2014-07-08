@@ -6,6 +6,10 @@ body {
     color: #333;
 }
 
+center > * {
+    text-align: left;
+}
+
 center .container {
     width: 600px;
 }
