@@ -17,7 +17,10 @@
                     format via
                     <a href="http://github.com/cognitect/transit-js">transit-js</a>,
                     an implementation of the Transit format for
-                    JavaScript. Transit implementations for other
+                    JavaScript.
+                </p>
+                <p>
+                    Transit implementations for other
                     languages may provide slightly different APIs that
                     reflect the idioms of the implementation language.
                     However, regardless of implementation, the
@@ -151,6 +154,31 @@ w.write(m);</textarea>
 w.write(m);</textarea>
                 <button onclick="evaluate('write-map-verbose')">Eval</button>
                 <h3>Caching</h3>
+                <p>
+                    Transit implementations cache repeated values on
+                    read and write. This simple optimization allows
+                    Transit implementations to compete with
+                    traditional JSON encoder/decoder usage. For
+                    example transit-js read can be up to 2X faster
+                    than JSON.parse for the same logical data - this is
+                    without forcing end users to understand how to
+                    index into the payload themselves.
+                </p>
+                <textarea id="write-cache">var w = transit.writer("json"),
+    d = [{"userCommentId": 9,
+          "userUpvotes": 10},
+         {"userCommentId": 0,
+          "userUpvotes": 3},
+         {"userCommentId": 1,
+          "userUpvotes": 4},
+         {"userCommentId": 4,
+          "userUpvotes": 1},
+         {"userCommentId": 3,
+          "userUpvotes": 100}],
+   ret = {json: JSON.stringify(d).length,
+          transit: w.write(d).length};
+ret;</textarea>
+                <button onclick="evaluate('write-cache')">Eval</button>
                 <h3>Extensible Reading & Writing</h3>
                 <h4>Read handlers</h3>
                 <h4>Write handlers</h3>
