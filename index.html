@@ -20,7 +20,26 @@
                     preserved.
                 </p>
                 <h3>Creating a Reader</h3>
-                <textarea>var w = transit.writer();</textarea>
+                <p>
+                    Transit format currently uses JSON and msgpack for
+                    the wire format. You can specify what type
+                    of reader you wish to construct:
+                </p>
+                <textarea>var r = transit.reader("json");</textarea>
+                <p>
+                    Once a reader has been constructed you can read
+                    transit wire data. Note that transit supports
+                    reading plain JSON:
+                </p>
+                <textarea>r.read("{\"foo\":\"bar\"}");</textarea>
+                <p>
+                    However instead of returning a JavaScript object
+                    transit-js will return a real hash map. transit-js
+                    hash maps not only support the proposed ECMAScript
+                    6 Map interface, look up is based on value not
+                    only reference which subsumes and supercedes the
+                    standard behavior.
+                </p>
             </div>
         </center>
 
