@@ -180,8 +180,29 @@ w.write(m);</textarea>
 ret;</textarea>
                 <button onclick="evaluate('write-cache')">Eval</button>
                 <h3>Extensible Reading & Writing</h3>
-                <h4>Read handlers</h3>
-                <h4>Write handlers</h3>
+                <p>
+                    One of the biggest drawbacks of JSON as a data
+                    format is the lack of extensibility. Transit allows
+                    users to customize both reading and writing.
+                </p>
+                <h4>Read handlers</h4>
+                <p>
+                    Transit readers can be customized with user
+                    provided handlers. For example:
+                </p>
+                <textarea id="write-cache">var Point = function(x, y) {this.x=x;this.y=y},
+    r     = transit.reader("json", {
+              "handlers": {
+                 "point": function(v) {
+                    return new Point(v[0], v[1]);
+                  }
+              }
+            });
+
+r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
+                <button onclick="evaluate('write-cache')">Eval</button>
+
+                <h4>Write handlers</h4>
             </div>
         </center>
 
