@@ -20,8 +20,9 @@
                 :source-map true}}
              {:id "release"
               :source-paths ["src"]
-              :externs ["resources/codemirror.js"]
               :compiler {
+                :pretty-print false
+                :externs ["codemirror_externs.js"]
                 :output-to "resources/tour.js"
                 :output-dir "resources/out-adv"
                 :optimizations :advanced}}]})

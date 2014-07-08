@@ -56,7 +56,7 @@
                     our case we simply take a string of encoded data:
                 </p>
                 <p>
-                    We can read JavaScript strings, numbers, and
+                    We can read JSON strings, numbers, and
                     arrays as supported
                     by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse</a>:
                 </p>
@@ -70,7 +70,7 @@ r.read("[1,1.5,1e5,\"A string!\",\"\u03BB\"]");</textarea>
 r.read("[\"~m0\",\"~m1\",\"~m2\"]");</textarea>
                 <button onclick="evaluate('read-dates')">Eval</button>
                 <p>
-                    You can also read JavaScript objects:
+                    You can also read JSON objects:
                 </p>
                 <textarea id="map-read">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");
@@ -78,8 +78,9 @@ m["foo"]</textarea>
                 <button onclick="evaluate('map-read')">Eval</button>
                 <p>
                     Note that a plain JavaScript object was not
-                    returned. JavaScript objects do not support
-                    scalar values as keys beyond strings.
+                    actually returned - we could not dereference
+                    "foo".  JavaScript objects do not support scalar
+                    values as keys beyond strings.
                 </p>
                 <textarea id="read-map">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");
@@ -153,6 +154,45 @@ w.write(m);</textarea>
     m = {"foo": 1, "bar": 2};
 w.write(m);</textarea>
                 <button onclick="evaluate('write-map-verbose')">Eval</button>
+                <h3>Extensible Reading & Writing</h3>
+                <p>
+                    One of the biggest drawbacks of JSON as a data
+                    format is the lack of extensibility. Transit allows
+                    users to customize both reading and writing.
+                </p>
+                <h4>Read handlers</h4>
+                <p>
+                    Transit readers can be customized with user
+                    provided handlers. For example:
+                </p>
+                <textarea id="read-handler">var Point = function(x, y) {this.x=x;this.y=y},
+    r     = transit.reader("json", {
+              "handlers": {
+                 "point": function(v) {
+                    return new Point(v[0], v[1]);
+                  }
+              }
+            });
+
+r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
+                <button onclick="evaluate('read-handler')">Eval</button>
+                <h4>Write handlers</h4>
+                <p>
+                    Transit writers can similar be extended to handle
+                    custom types:
+                </p>
+                <textarea id="write-handler">var Point = function(x, y) {this.x=x;this.y=y},
+    ph    = transit.makeWriteHandler({
+              tag: function(v) { return "point"; },
+              rep: function(v) { return [v.x, v.y]; },
+              stringRep: function(v) { return null }
+            }),
+    w     = transit.writer("json", {
+              "handlers": transit.map([Point, ph])
+            });
+
+w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
+                <button onclick="evaluate('write-handler')">Eval</button>
                 <h3>Caching</h3>
                 <p>
                     Transit implementations cache repeated values on
@@ -179,51 +219,12 @@ w.write(m);</textarea>
           transit: w.write(d).length};
 ret;</textarea>
                 <button onclick="evaluate('write-cache')">Eval</button>
-                <h3>Extensible Reading & Writing</h3>
-                <p>
-                    One of the biggest drawbacks of JSON as a data
-                    format is the lack of extensibility. Transit allows
-                    users to customize both reading and writing.
-                </p>
-                <h4>Read handlers</h4>
-                <p>
-                    Transit readers can be customized with user
-                    provided handlers. For example:
-                </p>
-                <textarea id="read-handler">var Point = function(x, y) {this.x=x;this.y=y},
-    r     = transit.reader("json", {
-              "handlers": {
-                 "point": function(v) {
-                    return new Point(v[0], v[1]);
-                  }
-              }
-            });
-
-r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
-                <button onclick="evaluate('read-handler)">Eval</button>
-                <h4>Write handlers</h4>
-                <p>
-                    Transit writers can similar be extended to handle
-                    custom types:
-                </p>
-                <textarea id="write-handler">var Point = function(x, y) {this.x=x;this.y=y},
-    ph    = transit.makeWriteHandler({
-              tag: function(v) { return "point"; },
-              rep: function(v) { return [v.x, v.y]; },
-              stringRep: function(v) { return null }
-            }),
-    w     = transit.writer("json", {
-              "handlers": transit.map([Point, ph])
-            });
-
-w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
-                <button onclick="evaluate('write-handler')">Eval</button>
             </div>
         </center>
 
         <!-- Load Scripts -->
-        <script src="resources/out-dev/goog/base.js" type="text/javascript"></script>
+        <!-- <script src="resources/out-dev/goog/base.js" type="text/javascript"></script> -->
         <script src="resources/tour.js" type="text/javascript"></script>
-        <script type="text/javascript">goog.require("tour.core");</script>
+        <!-- <script type="text/javascript">goog.require("tour.core");</script> -->
     </body>
 </html>

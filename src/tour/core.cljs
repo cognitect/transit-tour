@@ -4,10 +4,6 @@
 
 (enable-console-print!)
 
-;; var myCodeMirror = CodeMirror(function(elt) {
-;;   myTextArea.parentNode.replaceChild(elt, myTextArea);
-;; }, {value: myTextArea.value});
-
 (def textareas (atom {}))
 
 (doseq [textarea (d/nodes (css/sel "textarea"))]
