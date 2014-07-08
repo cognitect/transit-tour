@@ -1,11 +1,11 @@
 <html>
     <head>
-        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
-        <link href="codemirror.css" rel="stylesheet" type="text/css"></link>
-        <script src="codemirror.js" type="text/javascript"></script>
-        <script src="javascript.js" type="text/javascript"></script>
-        <link href="main.css" rel="stylesheet" type="text/css"></link>
-        <script src="transit.js" type="text/javascript"></script>
+        <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+        <link href="resources/codemirror.css" rel="stylesheet" type="text/css"></link>
+        <script src="resources/codemirror.js" type="text/javascript"></script>
+        <script src="resources/javascript.js" type="text/javascript"></script>
+        <link href="resources/main.css" rel="stylesheet" type="text/css"></link>
+        <script src="resources/transit.js" type="text/javascript"></script>
     </head>
     <body>
         <center>
@@ -190,7 +190,7 @@ ret;</textarea>
                     Transit readers can be customized with user
                     provided handlers. For example:
                 </p>
-                <textarea id="write-cache">var Point = function(x, y) {this.x=x;this.y=y},
+                <textarea id="read-handler">var Point = function(x, y) {this.x=x;this.y=y},
     r     = transit.reader("json", {
               "handlers": {
                  "point": function(v) {
@@ -200,13 +200,13 @@ ret;</textarea>
             });
 
 r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
-                <button onclick="evaluate('write-cache')">Eval</button>
+                <button onclick="evaluate('read-handler)">Eval</button>
                 <h4>Write handlers</h4>
                 <p>
                     Transit writers can similar be extended to handle
                     custom types:
                 </p>
-                <textarea id="write-cache">var Point = function(x, y) {this.x=x;this.y=y},
+                <textarea id="write-handler">var Point = function(x, y) {this.x=x;this.y=y},
     ph    = transit.makeWriteHandler({
               tag: function(v) { return "point"; },
               rep: function(v) { return [v.x, v.y]; },
@@ -217,13 +217,13 @@ r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
             });
 
 w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
-                <button onclick="evaluate('write-cache')">Eval</button>
+                <button onclick="evaluate('write-handler')">Eval</button>
             </div>
         </center>
 
         <!-- Load Scripts -->
-        <script src="out-dev/goog/base.js" type="text/javascript"></script>
-        <script src="tour.js" type="text/javascript"></script>
+        <script src="resources/out-dev/goog/base.js" type="text/javascript"></script>
+        <script src="resources/tour.js" type="text/javascript"></script>
         <script type="text/javascript">goog.require("tour.core");</script>
     </body>
 </html>

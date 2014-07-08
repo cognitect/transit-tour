@@ -8,19 +8,20 @@
 
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]]
 
-  :source-paths ["src"]
+  :source-paths ["src" "resources"]
 
   :cljsbuild { 
     :builds [{:id "dev"
               :source-paths ["src"]
               :compiler {
-                :output-to "tour.js"
-                :output-dir "out-dev"
+                :output-to "resources/tour.js"
+                :output-dir "resources/out-dev"
                 :optimizations :none
                 :source-map true}}
              {:id "release"
               :source-paths ["src"]
+              :externs ["resources/codemirror.js"]
               :compiler {
-                :output-to "tour.js"
-                :output-dir "out-adv"
+                :output-to "resources/tour.js"
+                :output-dir "resources/out-adv"
                 :optimizations :advanced}}]})
