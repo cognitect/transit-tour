@@ -78,9 +78,12 @@ m["foo"]</textarea>
                 <button onclick="evaluate('map-read')">Eval</button>
                 <p>
                     Note that a plain JavaScript object was not
-                    actually returned - we could not dereference
-                    "foo".  JavaScript objects do not support scalar
-                    values as keys beyond strings.
+                    actually returned from <code>read</code> - we
+                    could not dereference
+                    <code>"foo"</code>. JavaScript objects do not
+                    support scalar values as keys beyond strings making
+                    them less useful as a resulting
+                    value. <code>read</code> returns proper hash maps.
                 </p>
                 <textarea id="read-map">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");
@@ -88,8 +91,7 @@ m.get("foo")</textarea>
                 <button onclick="evaluate('read-map')">Eval</button>
                 <h3>Maps</h3>
                 <p>
-                    transit-js returns proper hash maps. transit-js
-                    hash maps not only support the
+                    transit-js hash maps not only support the
                     proposed <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">ECMAScript
                     6 Map interface</a>, look up is based on value not
                     reference which subsumes and supercedes the
