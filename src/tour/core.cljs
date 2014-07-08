@@ -9,7 +9,8 @@
 ;; }, {value: myTextArea.value});
 
 (doseq [textarea (d/nodes (css/sel "textarea"))]
-  (js/CodeMirror.fromTextArea textarea
+  (js/CodeMirrorREPL. (.-id textarea)
     #js {:mode "javascript"
+         :theme "eclipse"
          :lineNumbers true
          :viewportMargin js/Infinity}))

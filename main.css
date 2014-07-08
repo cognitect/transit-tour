@@ -8,6 +8,7 @@
 .CodeMirror-scroll {
   overflow-y: hidden;
   overflow-x: auto;
+  height: auto;
 }
 
 /* Main */
@@ -38,4 +39,15 @@ center .container {
     resize: none;
     border: none;
     width: 100%;
+}
+
+button {
+    margin: 8px 0 0 0;
+    background-color: white;
+    border: 1px solid #aaa;
+    padding: 4px 8px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
 }
