@@ -25,6 +25,6 @@
          ;:theme "eclipse"
          })
   (js/configREPL
-    (js/CodeMirrorREPL. (.-id textarea)
+    (js/CodeMirrorREPL. textarea
       #js {:mode "javascript"
            :theme "eclipse"})))
