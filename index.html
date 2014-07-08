@@ -3,10 +3,6 @@
         <link href="codemirror.css" rel="stylesheet" type="text/css"></link>
         <script src="codemirror.js" type="text/javascript"></script>
         <script src="javascript.js" type="text/javascript"></script>
-        <link href="codemirror-repl.css" rel="stylesheet" type="text/css"></link>
-        <link href="index.css" rel="stylesheet" type="text/css"></link>
-        <script src="codemirror-repl.js" type="text/javascript"></script>
-        <script src="jsrepl.js" type="text/javascript"></script>
         <link href="main.css" rel="stylesheet" type="text/css"></link>
         <script src="transit.js" type="text/javascript"></script>
     </head>
@@ -30,14 +26,20 @@
                     supports JSON. You can specify what type of reader
                     you wish to construct:
                 </p>
-                <textarea id="create"></textarea>
+                <textarea id="create">var r = transit.reader("json");</textarea>
+                <button onclick="evaluate('create')">Eval</button>
                 <h3>Reading Data</h3>
                 <p>
                     Once a reader has been constructed you can read
                     transit wire data. Plain JSON is valid wire data
                     for transit wire JSON readers:
                 </p>
-                <textarea id="read"></textarea>
+                <textarea id="read">var m = r.read("{\"foo\":\"bar\"}");
+m["foo"]</textarea>
+                <button onclick="evaluate('read')">Eval</button>
+                <textarea id="read-map">var m = r.read("{\"foo\":\"bar\"}");
+m.get("foo")</textarea>
+                <button onclick="evaluate('read-map')">Eval</button>
                 <p>
                     However instead of returning a JavaScript object
                     transit-js will return a real hash map. transit-js
