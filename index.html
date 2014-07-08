@@ -64,7 +64,9 @@
 r.read("[1,1.5,1e5,\"A string!\",\"\u03BB\"]");</textarea>
                 <button onclick="evaluate('array-read')">Eval</button>
                 <p>
-                    We can also read values not supported by JSON.parse:
+                    We can also read values not supported by JSON.parse.
+                    The tag <code>~m</code> denotes a non-verbose encoding of dates
+                    (human readable dates can also be read/written):
                 </p>
                 <textarea id="read-dates">var r = transit.reader("json");
 r.read("[\"~m0\",\"~m1\",\"~m2\"]");</textarea>
@@ -79,11 +81,12 @@ m["foo"]</textarea>
                 <p>
                     Note that a plain JavaScript object was not
                     actually returned from <code>read</code> - we
-                    could not dereference
-                    <code>"foo"</code>. JavaScript objects do not
-                    support scalar values as keys beyond strings making
-                    them less useful as a resulting
-                    value. <code>read</code> returns proper hash maps.
+                    could not dereference the property
+                    <code>"foo"</code> using the bracket
+                    syntax. JavaScript objects do not support scalar
+                    values as keys beyond strings making them less
+                    useful as a resulting value. <code>read</code>
+                    returns proper hash maps.
                 </p>
                 <textarea id="read-map">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");
@@ -115,6 +118,16 @@ m.get(new Date(0));</textarea>
 var m = r.read("{\"~m0\":\"Works!\"}");
 m.get(new Date(0));</textarea>
                 <button onclick="evaluate('complex-key-read')">Eval</button>
+                <p>
+                    transit-js includes maps and sets that may be used
+                    a la carte.  They have been written with
+                    performance in mind and outperform existing ES6
+                    Map/Set shims:
+                </p>
+                <textarea id="complex-key-read-2">var m = transit.map([{first:"John",last:"McCarthy"},
+                     new Date(-1335729600000)]);
+m.get({first:"John",last:"McCarthy"});</textarea>
+                <button onclick="evaluate('complex-key-read-2')">Eval</button>
                 <h3>Creating a Writer</h3>
                 <p>
                     Creating a Transit writer is similar to constructing
