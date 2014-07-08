@@ -4,13 +4,27 @@
 
 (enable-console-print!)
 
+;; repl.eval = function (code) {
+;;     try {
+;;         if (isExpression(code)) {
+;;             geval("__expression__ = " + code);
+;;             express(__expression__);
+;;         } else geval(code);
+;;     } catch (error) {
+;;         repl.print(error, "error");
+;;     }
+;; };
+
 ;; var myCodeMirror = CodeMirror(function(elt) {
 ;;   myTextArea.parentNode.replaceChild(elt, myTextArea);
 ;; }, {value: myTextArea.value});
 
 (doseq [textarea (d/nodes (css/sel "textarea"))]
-  (js/CodeMirrorREPL. (.-id textarea)
+  #_(js/CodeMirror.fromTextArea textarea
     #js {:mode "javascript"
-         :theme "eclipse"
-         :lineNumbers true
-         :viewportMargin js/Infinity}))
+         ;:theme "eclipse"
+         })
+  (js/configREPL
+    (js/CodeMirrorREPL. (.-id textarea)
+      #js {:mode "javascript"
+           :theme "eclipse"})))
