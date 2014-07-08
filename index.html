@@ -47,15 +47,25 @@
                 <h3>Reading Data</h3>
                 <p>
                     Once a reader has been constructed you can read
-                    transit wire data. All JSON is valid wire data
-                    for transit JSON readers.
+                    transit wire data. All JSON is valid wire data for
+                    transit JSON readers. Some Transit read
+                    implementations take an encoded input stream, in
+                    our case we simply take a string of encoded data:
                 </p>
                 <p>
-                    We can read JavaScript strings, numbers, and arrays, just like JSON:
+                    We can read JavaScript strings, numbers, and
+                    arrays as supported
+                    by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse</a>:
                 </p>
                 <textarea id="array-read">var r = transit.reader("json");
-r.read("[1,1.5,\"A string!\"]");</textarea>
+r.read("[1,1.5,1e5,\"A string!\",\"\u03BB\"]");</textarea>
                 <button onclick="evaluate('array-read')">Eval</button>
+                <p>
+                    We can also read values not supported by JSON.parse:
+                </p>
+                <textarea id="read-dates">var r = transit.reader("json");
+r.read("[\"~m0\",\"~m1\",\"~m2\"]");</textarea>
+                <button onclick="evaluate('read-dates')">Eval</button>
                 <p>
                     You can also read JavaScript objects:
                 </p>
@@ -90,19 +100,60 @@ m.get(new Date(0));</textarea>
                 </p>
                 <p>
                     transit-js supports reading and writing maps with
-                    richer keys - including JavaScript objects,
-                    arrays, and transit-js maps. For example you can read
-                    a map with a date key:
+                    richer keys - even including collection types like
+                    JavaScript objects, arrays, and transit-js
+                    maps. For example you can read a map with a date
+                    key:
                 </p>
                 <textarea id="complex-key-read">var r = transit.reader("json");
 var m = r.read("{\"~m0\":\"Works!\"}");
 m.get(new Date(0));</textarea>
                 <button onclick="evaluate('complex-key-read')">Eval</button>
                 <h3>Creating a Writer</h3>
+                <p>
+                    Creating a Transit writer is similar to constructing
+                    a reader:
+                </p>
+                <textarea id="writer">var w = transit.writer("json");</textarea>
+                <button onclick="evaluate('writer')">Eval</button>
                 <h3>Writing Data</h3>
+                <p>
+                    We can write permitted JSON values similar
+                    to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify</a>:
+                <p>
+                <textarea id="write-array">var w = transit.writer("json");
+w.write([1,1.5,1e500,"A string!","\u03BB"]);</textarea>
+                <button onclick="evaluate('write-array')">Eval</button>
+                <p>
+                    We can also encode values not supported by JSON.stringify, for
+                    example dates and 64 bit integer values:
+                </p>
+                <textarea id="write-dates">var w = transit.writer("json"),
+   v0 = new Date(),
+   v1 = transit.integer("9007199254740993");
+w.write([v0,v1]);</textarea>
+                <button onclick="evaluate('write-dates')">Eval</button>
+                <p>
+                    We can also encode map and map-like collection types:
+                </p>
+                <textarea id="write-map">var w = transit.writer("json"),
+    m = {"foo": 1, "bar": 2};
+w.write(m);</textarea>
+                <button onclick="evaluate('write-map')">Eval</button>
+                <p>
+                    Notice that the map get written as a JavaScript
+                    array. While this is more efficient it's also less
+                    readable. You can construct a verbose writer to
+                    get human readable output for debugging purposes:
+                </p>
+                <textarea id="write-map-verbose">var w = transit.writer("json-verbose"),
+    m = {"foo": 1, "bar": 2};
+w.write(m);</textarea>
+                <button onclick="evaluate('write-map-verbose')">Eval</button>
                 <h3>Caching</h3>
-                <h3>Read handlers</h3>
-                <h3>Write handlers</h3>
+                <h3>Extensible Reading & Writing</h3>
+                <h4>Read handlers</h3>
+                <h4>Write handlers</h3>
             </div>
         </center>
 
