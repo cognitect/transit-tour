@@ -1,0 +1,21 @@
+body {
+    font-family: "Palatino Linotype",Palatino,serif;
+    font-weight: 400;
+    padding-top: 25px;
+    background-color: #fefeee;
+    color: #333;
+}
+
+center .container {
+    width: 600px;
+}
+
+.container p {
+    text-align: left;
+    width: 100%;
+    line-height: 1.4em;
+}
+
+.container textarea {
+    width: 100%;
+}

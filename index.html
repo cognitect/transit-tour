@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <link href="main.css" rel="stylesheet" type="text/css"></link>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.min.js" type="text/javascript"></script>
+        <script src="transit.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <center>
+            <script src="out/goog/base.js" type="text/javascript"></script>
+            <script src="tour.js" type="text/javascript"></script>
+            <script type="text/javascript">goog.require("tour.core");</script>
+            <div class="container">
+                <h2>A Tour of Transit</h2>
+                <p>
+                    This tour introduces the transit format via
+                    transit-js, an implementation of the transit format
+                    for JavaScript. While Transit implementations for
+                    other languages may provide slightly different APIs
+                    that reflect the idioms of the particular language,
+                    the semantics of the format will be
+                    preserved.
+                </p>
+                <h3>Creating a Reader</h3>
+                <textarea>
+                    var w = transit.writer();
+                </textarea>
+            </div>
+        </center>
+    </body>
+</html>
