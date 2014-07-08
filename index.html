@@ -201,8 +201,23 @@ ret;</textarea>
 
 r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
                 <button onclick="evaluate('write-cache')">Eval</button>
-
                 <h4>Write handlers</h4>
+                <p>
+                    Transit writers can similar be extended to handle
+                    custom types:
+                </p>
+                <textarea id="write-cache">var Point = function(x, y) {this.x=x;this.y=y},
+    ph    = transit.makeWriteHandler({
+              tag: function(v) { return "point"; },
+              rep: function(v) { return [v.x, v.y]; },
+              stringRep: function(v) { return null }
+            }),
+    w     = transit.writer("json", {
+              "handlers": transit.map([Point, ph])
+            });
+
+w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
+                <button onclick="evaluate('write-cache')">Eval</button>
             </div>
         </center>
 
