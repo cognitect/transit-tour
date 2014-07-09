@@ -75,7 +75,7 @@ r.read("[1,1.5,1e5,\"A string!\",\"\u03BB\"]");</textarea>
                     dates can also be read/written).
                 </p>
                 <textarea id="read-dates">var r = transit.reader("json");
-r.read("[\"~m0\",\"~m1\",\"~m2\"]");</textarea>
+r.read("[\"~m0\",\"~m1\"]");</textarea>
                 <button onclick="evaluate('read-dates')">Eval</button>
                 <p>
                     For a full list of the scalar tags please refer to
@@ -155,7 +155,7 @@ m.get({first:"John",last:"McCarthy"});</textarea>
                     can be further interpreted by the tagged value
                     handler after being decoded by Transit itself.
                     Transit ships with several tagged values built in
-                    including sets:
+                    including ES6 compliant sets:
                 </p>
                 <textarea id="tagged-read">var r = transit.reader("json"),
     s = r.read("{\"~#set\":[\"cat\",\"dog\",\"bird\"]}");
