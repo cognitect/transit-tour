@@ -20,11 +20,12 @@
                     JavaScript.
                 </p>
                 <p>
-                    Transit implementations for other
-                    languages may provide slightly different APIs that
-                    reflect the idioms of the implementation language.
-                    However, regardless of implementation, the
-                    semantics of the format must be preserved.
+                    Transit implementations for other languages may
+                    provide slightly different APIs that either
+                    reflect the idioms of the implementation language
+                    or language specific performance
+                    concerns. However, regardless of implementation,
+                    the semantics of the format must be preserved.
                 </p>
                 <p>
                     The following is an interactive guide to
@@ -51,9 +52,10 @@
                 <p>
                     Once a reader has been constructed you can read
                     transit wire data. All JSON is valid wire data for
-                    transit JSON readers. Some Transit read
+                    transit JSON readers. Some Transit <code>read</code>
                     implementations take an encoded input stream, in
-                    our case we simply take a string of encoded data:
+                    the transit-js case <code>read</code> simply takes
+                    a string of encoded data:
                 </p>
                 <p>
                     We can read JSON strings, numbers, and
@@ -104,6 +106,11 @@ m["foo"]</textarea>
     m = r.read("{\"foo\":\"bar\"}");
 m.get("foo")</textarea>
                 <button onclick="evaluate('read-map')">Eval</button>
+                <p>
+                    While this may initially seem less convenient
+                    there are benefits to opting into returning maps
+                    in transit-js.
+                </p>
                 <h3>Maps</h3>
                 <p>
                     transit-js hash maps not only support the
@@ -140,6 +147,27 @@ m.get(new Date(0));</textarea>
 
 m.get({first:"John",last:"McCarthy"});</textarea>
                 <button onclick="evaluate('complex-key-read-2')">Eval</button>
+                <h3>Tagged Values</h3>
+                <p>
+                    Transit also supports non-scalar values via tagged values.
+                    Tagged values are represented as JSON objects with a single
+                    key value pair. The object key is a tag - a string prefixed with
+                    <code>~#</code>. The value is a Transit value that
+                    can be further interpreted by the tagged value
+                    handler after being decoded by Transit itself.
+                    Transit ships with several tagged values built in
+                    including sets:
+                </p>
+                <textarea id="tagged-read">var r = transit.reader("json"),
+    s = r.read("{\"~#set\":[\"cat\",\"dog\",\"bird\"]}");
+s.has("bird");</textarea>
+                <button onclick="evaluate('tagged-read')">Eval</button>
+                <p>
+                    Tagged values that have no user installed handler
+                    will be handled by a default handler. This allows
+                    sending data intact through heterogenous
+                    indepenent systems that utilize Transit.
+                </p>
                 <h3>Creating a Writer</h3>
                 <p>
                     Creating a Transit writer is similar to constructing
@@ -161,7 +189,7 @@ w.write([1,1.5,1e500,"A string!","\u03BB"]);</textarea>
                 </p>
                 <textarea id="write-dates">var w  = transit.writer("json"),
     v0 = new Date(),
-    v1 = transit.integer("9007199254740993");
+    v1 = transit.integer("9007199254740993"); // Math.pow(2,53)+1
 w.write([v0,v1]);</textarea>
                 <button onclick="evaluate('write-dates')">Eval</button>
                 <p>
