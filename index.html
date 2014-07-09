@@ -85,7 +85,7 @@ m["foo"]</textarea>
                     <code>"foo"</code> using the bracket
                     syntax. JavaScript objects do not support scalar
                     values as keys beyond strings making them less
-                    useful as a resulting value. <code>read</code>
+                    useful as a resulting value, thus <code>read</code>
                     returns proper hash maps.
                 </p>
                 <textarea id="read-map">var r = transit.reader("json");
@@ -109,7 +109,7 @@ m.get(new Date(0));</textarea>
                 </p>
                 <p>
                     transit-js supports reading and writing maps with
-                    richer keys - even including collection types like
+                    richer keys including collection types like
                     JavaScript objects, arrays, and transit-js
                     maps. For example you can read a map with a date
                     key:
@@ -119,7 +119,7 @@ var m = r.read("{\"~m0\":\"Works!\"}");
 m.get(new Date(0));</textarea>
                 <button onclick="evaluate('complex-key-read')">Eval</button>
                 <p>
-                    transit-js maps and sets that may be used &agrave;
+                    transit-js maps and sets may be used &agrave;
                     la carte.  They have been written with performance
                     in mind and outperform existing ES6 Map/Set shims:
                 </p>
@@ -136,8 +136,8 @@ m.get({first:"John",last:"McCarthy"});</textarea>
                 <button onclick="evaluate('writer')">Eval</button>
                 <h3>Writing Data</h3>
                 <p>
-                    We can write permitted JSON values similar
-                    to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify</a>:
+                    We can serialize simple JavaScript values
+                    as we would with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify</a>:
                 <p>
                 <textarea id="write-array">var w = transit.writer("json");
 w.write([1,1.5,1e500,"A string!","\u03BB"]);</textarea>
@@ -159,8 +159,8 @@ w.write([v0,v1]);</textarea>
 w.write(m);</textarea>
                 <button onclick="evaluate('write-map')">Eval</button>
                 <p>
-                    Notice that the map get written as a JavaScript
-                    array. While this is more efficient it's also less
+                    Notice the map is written as a JavaScript
+                    array. While this may be more efficient it's also less
                     readable. You can construct a verbose writer to
                     get human readable output for debugging purposes:
                 </p>
@@ -199,7 +199,7 @@ r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
     ph    = transit.makeWriteHandler({
               tag: function(v) { return "point"; },
               rep: function(v) { return [v.x, v.y]; },
-              stringRep: function(v) { return null }
+              stringRep: function(v) { return null; }
             }),
     w     = transit.writer("json", {
               "handlers": transit.map([Point, ph])
@@ -213,7 +213,7 @@ w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
                     read and write. This simple optimization allows
                     Transit implementations to compete with
                     traditional JSON encoder/decoder usage. For
-                    example transit-js read can be up to 2X faster
+                    example transit-js read can be nearly 2X faster
                     than JSON.parse for the same logical data - this is
                     without forcing end users to understand how to
                     index into the payload themselves.
