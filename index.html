@@ -53,7 +53,7 @@
                     Once a reader has been constructed you can read
                     transit wire data. All JSON is valid wire data for
                     transit JSON readers. Some Transit <code>read</code>
-                    implementations take an encoded input stream, in
+                    implementations take an encoded input stream. In
                     the transit-js case <code>read</code> simply takes
                     a string of encoded data:
                 </p>
@@ -232,7 +232,7 @@ r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
                 <button onclick="evaluate('read-handler')">Eval</button>
                 <h4>Write handlers</h4>
                 <p>
-                    Transit writers can similar be extended to handle
+                    Transit writers can similarly be extended to handle
                     custom types:
                 </p>
                 <textarea id="write-handler">var Point = function(x, y) {this.x=x;this.y=y},
@@ -247,16 +247,19 @@ r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
 
 w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
                 <button onclick="evaluate('write-handler')">Eval</button>
+                <p>
+                    You may be wondering where the <code>^!</code>
+                    came from, this is an artifact of caching.
+                </p>
                 <h3>Caching</h3>
                 <p>
                     Transit implementations cache repeated values on
                     read and write. This simple optimization allows
                     Transit implementations to compete with
                     traditional JSON encoder/decoder usage. For
-                    example transit-js read can be nearly 2X faster
-                    than JSON.parse for the same logical data - this is
-                    without forcing end users to understand how to
-                    index into the payload themselves.
+                    example transit-js read can sometimes be nearly 2X
+                    faster than JSON.parse under some JavaScript
+                    engines for the same logical data:
                 </p>
                 <textarea id="write-cache">var w   = transit.writer("json"),
     d   = [{"userCommentId": 9,
