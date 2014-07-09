@@ -84,10 +84,10 @@ r.read("[\"~m0\",\"~m1\",\"~m2\"]");</textarea>
                 </p>
                 <p>
                     We've already seen that JSON arrays can be read,
-                    but You can also read JSON objects:
+                    but you can also read JSON objects:
                 </p>
-                <textarea id="map-read">var r = transit.reader("json");
-var m = r.read("{\"foo\":\"bar\"}");
+                <textarea id="map-read">var r = transit.reader("json"),
+    m = r.read("{\"foo\":\"bar\"}");
 m["foo"]</textarea>
                 <button onclick="evaluate('map-read')">Eval</button>
                 <p>
@@ -100,8 +100,8 @@ m["foo"]</textarea>
                     transit-js <code>read</code> instead returns
                     proper hash maps when reading objects:
                 </p>
-                <textarea id="read-map">var r = transit.reader("json");
-var m = r.read("{\"foo\":\"bar\"}");
+                <textarea id="read-map">var r = transit.reader("json"),
+    m = r.read("{\"foo\":\"bar\"}");
 m.get("foo")</textarea>
                 <button onclick="evaluate('read-map')">Eval</button>
                 <h3>Maps</h3>
@@ -126,8 +126,8 @@ m.get(new Date(0));</textarea>
                     maps. For example you can read a map with a date
                     key:
                 </p>
-                <textarea id="complex-key-read">var r = transit.reader("json");
-var m = r.read("{\"~m0\":\"Works!\"}");
+                <textarea id="complex-key-read">var r = transit.reader("json"),
+    m = r.read("{\"~m0\":\"Works!\"}");
 m.get(new Date(0));</textarea>
                 <button onclick="evaluate('complex-key-read')">Eval</button>
                 <p>
@@ -137,6 +137,7 @@ m.get(new Date(0));</textarea>
                 </p>
                 <textarea id="complex-key-read-2">var m = transit.map([{first:"John",last:"McCarthy"},
                      new Date(-1335729600000)]);
+
 m.get({first:"John",last:"McCarthy"});</textarea>
                 <button onclick="evaluate('complex-key-read-2')">Eval</button>
                 <h3>Creating a Writer</h3>
@@ -158,9 +159,9 @@ w.write([1,1.5,1e500,"A string!","\u03BB"]);</textarea>
                     We can also encode values not supported by JSON.stringify, for
                     example dates and 64 bit integer values:
                 </p>
-                <textarea id="write-dates">var w = transit.writer("json"),
-   v0 = new Date(),
-   v1 = transit.integer("9007199254740993");
+                <textarea id="write-dates">var w  = transit.writer("json"),
+    v0 = new Date(),
+    v1 = transit.integer("9007199254740993");
 w.write([v0,v1]);</textarea>
                 <button onclick="evaluate('write-dates')">Eval</button>
                 <p>
@@ -230,19 +231,19 @@ w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
                     without forcing end users to understand how to
                     index into the payload themselves.
                 </p>
-                <textarea id="write-cache">var w = transit.writer("json"),
-    d = [{"userCommentId": 9,
-          "userUpvotes": 10},
-         {"userCommentId": 0,
-          "userUpvotes": 3},
-         {"userCommentId": 1,
-          "userUpvotes": 4},
-         {"userCommentId": 4,
-          "userUpvotes": 1},
-         {"userCommentId": 3,
-          "userUpvotes": 100}],
-   ret = {json: JSON.stringify(d).length,
-          transit: w.write(d).length};
+                <textarea id="write-cache">var w   = transit.writer("json"),
+    d   = [{"userCommentId": 9,
+            "userUpvotes": 10},
+           {"userCommentId": 0,
+            "userUpvotes": 3},
+           {"userCommentId": 1,
+            "userUpvotes": 4},
+           {"userCommentId": 4,
+            "userUpvotes": 1},
+           {"userCommentId": 3,
+            "userUpvotes": 100}],
+    ret = {json: JSON.stringify(d).length,
+           transit: w.write(d).length};
 ret;</textarea>
                 <button onclick="evaluate('write-cache')">Eval</button>
             </div>

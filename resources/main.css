@@ -45,6 +45,7 @@ center .container {
 }
 
 button {
+    cursor: pointer;
     outline: none;
     font-weight: bold;
     margin: 8px 0 0 0;
