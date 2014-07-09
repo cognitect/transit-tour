@@ -253,12 +253,21 @@ w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
                 <h3>Caching</h3>
                 <p>
                     Transit implementations cache map keys, transit
-                    symbols, and transit keywords on read and
-                    write. This simple optimization allows Transit
-                    implementations to compete with traditional JSON
-                    encoder/decoder usage - transit-js read can be
-                    nearly 2X faster than JSON.parse under some
-                    JavaScript engines for the same logical data:
+                    symbols, transit keywords, and tagged value tags
+                    on read and write. This simple optimization allows
+                    Transit implementations to compete with
+                    traditional JSON encoder/decoder usage -
+                    transit-js read can be nearly 2X faster than
+                    JSON.parse under some JavaScript engines for the
+                    same logical data:
+                </p>
+                <textarea id="write-cache-simple">var w = transit.writer("json"),
+    d = [{"userId": 0}, {"userId": 1}];
+w.write(d);</textarea>
+                <button onclick="evaluate('write-cache-simple')">Eval</button>
+                <p>
+                    As the redundancy in the data grows, caching delivers
+                    increasingly compact results.
                 </p>
                 <textarea id="write-cache">var w   = transit.writer("json"),
     d   = [{"userCommentId": 9,
