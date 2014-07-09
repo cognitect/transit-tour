@@ -84,26 +84,25 @@ r.read('["~m0","~m1"]');</textarea>
                 </p>
                 <p>
                     We've already seen that JSON arrays can be read,
-                    but you can also read JSON objects:
-                </p>
-                <textarea id="map-read">var r = transit.reader("json"),
-    m = r.read('{"foo":"bar"}');
-m["foo"]</textarea>
-                <button onclick="evaluate('map-read')">Eval</button>
-                <p>
-                    Note that a plain JavaScript object was not
-                    actually returned from <code>read</code> - we
-                    could not dereference the property
-                    <code>"foo"</code> using the bracket
-                    syntax. Since JavaScript objects cannot support
-                    scalar values beyond strings as keys,
-                    transit-js <code>read</code> instead returns
-                    proper hash maps when reading objects:
+                    but you can also read JSON objects. Note that
+                    transit-js <code>read</code> returns proper
+                    hash maps when reading objects because
+                    JavaScript objects cannot support
+                    scalar values beyond strings as keys.
                 </p>
                 <textarea id="read-map">var r = transit.reader("json"),
     m = r.read('{"foo":"bar"}');
 m.get("foo")</textarea>
                 <button onclick="evaluate('read-map')">Eval</button>
+                <p>
+                    This means that you can't dereference properties
+                    using bracket notation, since they are not
+                    plain JavaScipt objects:
+                </p>
+                <textarea id="map-read">var r = transit.reader("json"),
+    m = r.read('{"foo":"bar"}');
+m["foo"]</textarea>
+                <button onclick="evaluate('map-read')">Eval</button>
                 <p>
                     While this may initially seem less convenient
                     there are benefits to opting into returning maps
