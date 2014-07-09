@@ -64,15 +64,27 @@
 r.read("[1,1.5,1e5,\"A string!\",\"\u03BB\"]");</textarea>
                 <button onclick="evaluate('array-read')">Eval</button>
                 <p>
-                    We can also read values not supported by JSON.parse.
-                    The tag <code>~m</code> denotes a non-verbose encoding of dates
-                    (human readable dates can also be read/written):
+                    We can also read values not supported by
+                    JSON.parse. This is possible by encoding values as
+                    strings and using a simple tag convention. Transit
+                    JSON strings that represent a scalar value are
+                    prefixed with
+                    <code>~</code> followed by single character. For
+                    example the tag <code>~m</code> denotes a
+                    non-verbose encoding of dates (human readable
+                    dates can also be read/written).
                 </p>
                 <textarea id="read-dates">var r = transit.reader("json");
 r.read("[\"~m0\",\"~m1\",\"~m2\"]");</textarea>
                 <button onclick="evaluate('read-dates')">Eval</button>
                 <p>
-                    You can also read JSON objects:
+                    For a full list of the scalar tags please refer to
+                    the <a href="http://transit.org">Transit
+                    specification</a>.
+                </p>
+                <p>
+                    We've already seen that JSON arrays can be read,
+                    but You can also read JSON objects:
                 </p>
                 <textarea id="map-read">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");
@@ -83,10 +95,10 @@ m["foo"]</textarea>
                     actually returned from <code>read</code> - we
                     could not dereference the property
                     <code>"foo"</code> using the bracket
-                    syntax. JavaScript objects do not support scalar
-                    values as keys beyond strings making them less
-                    useful as a resulting value, thus <code>read</code>
-                    returns proper hash maps.
+                    syntax. Since JavaScript objects cannot support
+                    scalar values beyond strings as keys,
+                    transit-js <code>read</code> instead returns
+                    proper hash maps when reading objects:
                 </p>
                 <textarea id="read-map">var r = transit.reader("json");
 var m = r.read("{\"foo\":\"bar\"}");

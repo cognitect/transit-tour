@@ -45,6 +45,7 @@ center .container {
 }
 
 button {
+    outline: none;
     font-weight: bold;
     margin: 8px 0 0 0;
     background-color: white;
@@ -54,6 +55,10 @@ button {
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+}
+
+button:active {
+    color: #55dd55;
 }
 
 .eval {
