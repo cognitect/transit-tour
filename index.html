@@ -21,22 +21,20 @@
                 </p>
                 <p>
                     Transit implementations for other languages may
-                    provide slightly different APIs that either
+                    provide slightly different APIs that
                     reflect the idioms of the implementation language
-                    or language specific performance
+                    and language specific performance
                     concerns. However, regardless of implementation,
                     the semantics of the format must be preserved.
                 </p>
                 <p>
-                    The following is an interactive guide to
-                    Transit. Press the <font class="eval">Eval</font> button
-                    after each code snippet to evaluate it.
-                </p>
-                <p>
-                    Each example is a
-                    <a href="http://codemirror.net">CodeMirror</a> editor so that
-                    you can edit and try out the transit-js API
-                    youself:
+                    The guide is interactive. Press
+                    the <font class="eval">Eval</font> button after
+                    each code snippet to evaluate it. Each example is
+                    a
+                    <a href="http://codemirror.net">CodeMirror</a>
+                    editor so that you can edit and try out the
+                    transit-js API youself:
                 </p>
                 <h3>Creating a Reader</h3>
                 <p>
@@ -148,9 +146,11 @@ m.get({first:"John",last:"McCarthy"});</textarea>
                 <button onclick="evaluate('complex-key-read-2')">Eval</button>
                 <h3>Tagged Values</h3>
                 <p>
-                    Transit also supports non-scalar values via tagged values.
-                    Tagged values are represented as JSON objects with a single
-                    key value pair. The object key is a tag - a string prefixed with
+                    Transit also supports non-scalar values beyond
+                    arrays and maps via tagged values.  Tagged values
+                    are represented on the wire as JSON objects with a
+                    single key value pair. The object key is a tag - a
+                    string prefixed with
                     <code>~#</code>. The value is a Transit value that
                     can be further interpreted by the tagged value
                     handler after being decoded by Transit itself.
@@ -180,7 +180,7 @@ s.has("bird");</textarea>
                     as we would with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify</a>:
                 <p>
                 <textarea id="write-array">var w = transit.writer("json");
-w.write([1,1.5,1e500,"A string!","\u03BB"]);</textarea>
+w.write([1,1.5,1e5,"A string!","\u03BB"]);</textarea>
                 <button onclick="evaluate('write-array')">Eval</button>
                 <p>
                     We can also encode values not supported by JSON.stringify, for
@@ -253,13 +253,13 @@ w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
                 </p>
                 <h3>Caching</h3>
                 <p>
-                    Transit implementations cache repeated values on
-                    read and write. This simple optimization allows
-                    Transit implementations to compete with
-                    traditional JSON encoder/decoder usage. For
-                    example transit-js read can sometimes be nearly 2X
-                    faster than JSON.parse under some JavaScript
-                    engines for the same logical data:
+                    Transit implementations cache map keys, transit
+                    symbols, and transit keywords on read and
+                    write. This simple optimization allows Transit
+                    implementations to compete with traditional JSON
+                    encoder/decoder usage - transit-js read can be
+                    nearly 2X faster than JSON.parse under some
+                    JavaScript engines for the same logical data:
                 </p>
                 <textarea id="write-cache">var w   = transit.writer("json"),
     d   = [{"userCommentId": 9,
