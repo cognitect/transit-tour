@@ -61,7 +61,7 @@
                     by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse</a>:
                 </p>
                 <textarea id="array-read">var r = transit.reader("json");
-r.read("[1,1.5,1e5,\"A string!\",\"\u03BB\"]");</textarea>
+r.read('[1,1.5,1e5,"A string!","\u03BB"]');</textarea>
                 <button onclick="evaluate('array-read')">Eval</button>
                 <p>
                     We can also read values not supported by
@@ -75,7 +75,7 @@ r.read("[1,1.5,1e5,\"A string!\",\"\u03BB\"]");</textarea>
                     dates can also be read/written).
                 </p>
                 <textarea id="read-dates">var r = transit.reader("json");
-r.read("[\"~m0\",\"~m1\"]");</textarea>
+r.read('["~m0","~m1"]');</textarea>
                 <button onclick="evaluate('read-dates')">Eval</button>
                 <p>
                     For a full list of the scalar tags please refer to
@@ -87,7 +87,7 @@ r.read("[\"~m0\",\"~m1\"]");</textarea>
                     but you can also read JSON objects:
                 </p>
                 <textarea id="map-read">var r = transit.reader("json"),
-    m = r.read("{\"foo\":\"bar\"}");
+    m = r.read('{"foo":"bar"}');
 m["foo"]</textarea>
                 <button onclick="evaluate('map-read')">Eval</button>
                 <p>
@@ -101,7 +101,7 @@ m["foo"]</textarea>
                     proper hash maps when reading objects:
                 </p>
                 <textarea id="read-map">var r = transit.reader("json"),
-    m = r.read("{\"foo\":\"bar\"}");
+    m = r.read('{"foo":"bar"}');
 m.get("foo")</textarea>
                 <button onclick="evaluate('read-map')">Eval</button>
                 <p>
@@ -131,7 +131,7 @@ m.get(new Date(0));</textarea>
                     key:
                 </p>
                 <textarea id="complex-key-read">var r = transit.reader("json"),
-    m = r.read("{\"~m0\":\"Works!\"}");
+    m = r.read('{"~m0":"Works!"}');
 m.get(new Date(0));</textarea>
                 <button onclick="evaluate('complex-key-read')">Eval</button>
                 <p>
@@ -158,7 +158,7 @@ m.get({first:"John",last:"McCarthy"});</textarea>
                     including ES6 compliant sets:
                 </p>
                 <textarea id="tagged-read">var r = transit.reader("json"),
-    s = r.read("{\"~#set\":[\"cat\",\"dog\",\"bird\"]}");
+    s = r.read('{"~#set":["cat","dog","bird"]}');
 s.has("bird");</textarea>
                 <button onclick="evaluate('tagged-read')">Eval</button>
                 <p>
@@ -228,7 +228,7 @@ w.write(m);</textarea>
               }
             });
 
-r.read("[{\"~#point\":[0.5,1.5]}]");</textarea>
+r.read('[{"~#point":[0.5,1.5]}]');</textarea>
                 <button onclick="evaluate('read-handler')">Eval</button>
                 <h4>Write handlers</h4>
                 <p>
