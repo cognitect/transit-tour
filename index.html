@@ -6,7 +6,7 @@
         <link href="resources/codemirror.css" rel="stylesheet" type="text/css"></link>
         <script src="resources/cm.js" type="text/javascript"></script>
         <link href="resources/main.css" rel="stylesheet" type="text/css"></link>
-        <script src="resources/transit-0.1.544-min.js" type="text/javascript"></script>
+        <script src="resources/transit-0.1.546-min.js" type="text/javascript"></script>
     </head>
     <body>
         <center>
@@ -141,7 +141,6 @@ m.get(new Date(0));</textarea>
                 </p>
                 <textarea id="complex-key-read-2">var m = transit.map([{first:"John",last:"McCarthy"},
                      new Date(-1335729600000)]);
-
 m.get({first:"John",last:"McCarthy"});</textarea>
                 <button onclick="evaluate('complex-key-read-2')">Eval</button>
                 <h3>Tagged Values</h3>
@@ -227,7 +226,6 @@ w.write(m);</textarea>
                   }
               }
             });
-
 r.read('[{"~#point":[0.5,1.5]}]');</textarea>
                 <button onclick="evaluate('read-handler')">Eval</button>
                 <h4>Write handlers</h4>
@@ -244,7 +242,6 @@ r.read('[{"~#point":[0.5,1.5]}]');</textarea>
     w     = transit.writer("json", {
               "handlers": transit.map([Point, ph])
             });
-
 w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
                 <button onclick="evaluate('write-handler')">Eval</button>
                 <p>
