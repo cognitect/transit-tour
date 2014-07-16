@@ -14,9 +14,9 @@
                 <h2>A Tour of Transit</h2>
                 <p>
                     This tour introduces
-                    the <a href="http://transit-format.org">Transit</a>
+                    the <a target="_blank" href="http://transit-format.org">Transit</a>
                     format via
-                    <a href="http://github.com/cognitect/transit-js">transit-js</a>,
+                    <a target="_blank" href="http://github.com/cognitect/transit-js">transit-js</a>,
                     an implementation of the Transit format for
                     JavaScript.
                 </p>
@@ -33,14 +33,15 @@
                     the <font class="eval">Eval</font> button after
                     each code snippet to evaluate it. Each example is
                     a
-                    <a href="http://codemirror.net">CodeMirror</a>
+                    <a target="_blank" href="http://codemirror.net">CodeMirror</a>
                     editor so that you can edit and try out the
                     transit-js API youself:
                 </p>
                 <h3>Creating a Reader</h3>
                 <p>
                     Transit implementations support encodings in
-                    <a href="http://json.org">JSON</a>, <a href="http://msgpack.org">msgpack</a>,
+                    <a target="_blank" href="http://json.org">JSON</a>,
+                    <a target="_blank" href="http://msgpack.org">msgpack</a>,
                     or both. transit-js currently only supports
                     JSON. You can specify what type of reader you wish
                     to construct:
@@ -59,7 +60,7 @@
                 <p>
                     We can read JSON strings, numbers, and
                     arrays as supported
-                    by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse</a>:
+                    by <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse</a>:
                 </p>
                 <textarea id="array-read">var r = transit.reader("json");
 r.read('[1,1.5,1e5,"A string!","\u03BB"]');</textarea>
@@ -80,7 +81,7 @@ r.read('["~m0","~m1"]');</textarea>
                 <button onclick="evaluate('read-dates')">Eval</button>
                 <p>
                     For a full list of the scalar tags please refer to
-                    the <a href="http://transit-format.org">Transit
+                    the <a target="_blank" href="http://transit-format.org">Transit
                     specification</a>.
                 </p>
                 <p>
@@ -112,7 +113,7 @@ m["foo"]</textarea>
                 <h3>Maps</h3>
                 <p>
                     transit-js hash maps not only support the
-                    proposed <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">ECMAScript
+                    proposed <a target="_blank" href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">ECMAScript
                     6 Map interface</a>, look up is based on value not
                     reference which subsumes the standard behavior.
                 </p>
@@ -176,7 +177,7 @@ s.has("bird");</textarea>
                 <h3>Writing Data</h3>
                 <p>
                     We can serialize simple JavaScript values
-                    as we would with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify</a>:
+                    as we would with <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify</a>:
                 <p>
                 <textarea id="write-array">var w = transit.writer("json");
 w.write([1,1.5,1e5,"A string!","\u03BB"]);</textarea>
@@ -283,19 +284,21 @@ w.write(d);</textarea>
 ret;</textarea>
                 <button onclick="evaluate('write-cache')">Eval</button>
                 <p>
-                    By clicking <font class="eval">Time</font> you
-                    can compare <code>JSON.parse</code> to
-                    Transit <code>read</code> on sample
-                    <a href="http://datomic.com">Datomic</a>
-                    data. Under <a href="http://nodejs.org">Node.js</a>
+                    By clicking <font class="eval">Time</font> you can
+                    compare <code>JSON.parse</code> to
+                    Transit <code>read</code> on typical database
+                    data. You can view the
+                    JSON <a target="_blank" href="resources/seattle.json">here</a> and
+                    the Transit
+                    JSON <a target="_blank" href="resources/seattle.transit.json">here</a>. Under <a target="_blank" href="http://nodejs.org">Node.js</a>
                     transit-js <code>read</code> slightly outperforms
                     <code>JSON.parse</code> in this case. Under Chrome
                     35, Opera 22, Internet Explorer 11, 10, and 9
                     transit-js <code>read</code> is only slightly
                     slower than <code>JSON.parse</code>. Note the
                     transit-js <code>read</code> timings
-                    <em>include</em> <code>JSON.parse</code> in addition
-                    to hydration:
+                    <em>include</em> <code>JSON.parse</code> in
+                    addition to hydration:
                 </p>
                 <center>
                     <table width="100%" style="padding: 10px; border: 1px dashed #ddd">
