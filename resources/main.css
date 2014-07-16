@@ -45,6 +45,7 @@ center .container {
 }
 
 button {
+    color: #555;
     cursor: pointer;
     outline: none;
     font-weight: bold;
@@ -58,8 +59,14 @@ button {
     -webkit-border-radius: 4px;
 }
 
+button:hover {
+    color: #222;
+    border: 1px solid black;
+}
+
 button:active {
-    color: #55dd55;
+    color: black;
+    background-color: #efefef;
 }
 
 .eval {
