@@ -165,7 +165,18 @@ s.has("bird");</textarea>
                     Tagged values that have no user installed handler
                     will be handled by a default handler. This allows
                     sending data intact through heterogenous
-                    independent systems that utilize Transit.
+                    independent systems that utilize Transit. For example
+                    in the following no handler exists for <code>line</code>.
+                    Yet we can read it and if we write it back out it remains
+                    intact.
+                </p>
+                <textarea id="tagged-unknown">var r = transit.reader("json");
+    l = r.read('{"~#line":[0,0,100,100]}');
+var w = transit.writer("json-verbose");
+w.write(l);</textarea>
+                <button onclick="evaluate('tagged-unknown')">Eval</button>
+                <p>
+                    This bring us to the topic of encoding transit values.
                 </p>
                 <h3>Creating a Writer</h3>
                 <p>
