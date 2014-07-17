@@ -6,7 +6,7 @@
         <link href="resources/codemirror.css" rel="stylesheet" type="text/css"></link>
         <script src="resources/cm.js" type="text/javascript"></script>
         <link href="resources/main.css" rel="stylesheet" type="text/css"></link>
-        <script src="resources/transit-0.8.552-min.js" type="text/javascript"></script>
+        <script src="resources/transit-0.8.566-min.js" type="text/javascript"></script>
     </head>
     <body>
         <center>
@@ -323,7 +323,10 @@ ret;</textarea>
                                 <td><code>JSON.parse</code></td><td>89K</td><td id="json-perf"></td>
                             </tr>
                             <tr>
-                                <td><code>read</code></td><td>53K</td><td id="transit-perf"></td>
+                                <td><code>JSON.parse Transit JSON</code></td><td>53K</td><td id="transit-json-perf"></td>
+                            </tr>
+                            <tr>
+                                <td><code>Transit read</code></td><td>53K</td><td id="transit-perf"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -351,6 +354,13 @@ ret;</textarea>
                }
                return (new Date())-s;
             }
+            function timeTransitJSONParse() {
+               var s = new Date();
+               for(var i = 0; i < 100; i++) {
+                  JSON.parse(seattlem);
+               }
+               return (new Date())-s;
+            }
             function timeTransitRead() {
                var s = new Date();
                for(var i = 0; i< 100; i++) {
@@ -370,8 +380,10 @@ ret;</textarea>
                }
 
                var jtime = timeJSONParse(),
+                   tjtime = timeTransitJSONParse(),
                    ttime = timeTransitRead();
                document.getElementById("json-perf").innerHTML = (jtime/100) + "ms";
+               document.getElementById("transit-json-perf").innerHTML = (tjtime/100) + "ms";
                document.getElementById("transit-perf").innerHTML = (ttime/100) + "ms";
             }
         </script>
