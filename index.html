@@ -79,8 +79,10 @@ r.read('[1,1.5,1e5,"A string!","\u03BB"]');</textarea>
 r.read('["~m0","~m1"]');</textarea>
                 <button onclick="evaluate('read-dates')">Eval</button>
                 <p>
-                    For a full list of the scalar tags please refer to
-                    the <a target="_blank" href="http://transit-format.org">Transit
+                    The example above shows that the <code>~m</code> tag uses
+                    the number of milliseconds after the date January 1, 1970 at 00:00:00 
+                    to encode a date value. For a full list of the scalar tags please 
+                    refer to the <a target="_blank" href="http://transit-format.org">Transit
                     specification</a>.
                 </p>
                 <p>
