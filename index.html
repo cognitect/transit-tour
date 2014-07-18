@@ -29,12 +29,12 @@
                     the semantics of the format must be preserved.
                 </p>
                 <p>
-                    The guide is interactive. Press
-                    the <font class="eval">Eval</font> button after
-                    each code snippet to evaluate it. Each example is
-                    a
+                    The guide is interactive. Many of the code snippets
+                    may be evaluated by pressing
+                    the <font class="eval">Eval</font> button underneath
+                    the snippet. These examples are
                     <a target="_blank" href="http://codemirror.net">CodeMirror</a>
-                    editor so that you can edit and try out the
+                    editors so that you can edit and try out the
                     transit-js API youself:
                 </p>
                 <h3>Creating a Reader</h3>
@@ -47,7 +47,6 @@
                     to construct:
                 </p>
                 <textarea id="create">transit.reader("json");</textarea>
-                <button onclick="evaluate('create')">Eval</button>
                 <h3>Reading Data</h3>
                 <p>
                     Once a reader has been constructed you can read
@@ -184,7 +183,6 @@ w.write(l);</textarea>
                     a reader:
                 </p>
                 <textarea id="writer">transit.writer("json");</textarea>
-                <button onclick="evaluate('writer')">Eval</button>
                 <h3>Writing Data</h3>
                 <p>
                     We can serialize simple JavaScript values
