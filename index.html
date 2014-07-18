@@ -107,7 +107,7 @@ m.get("foo")</textarea>
 m["foo"]</textarea>
                 <button onclick="evaluate('map-read')">Eval</button>
                 <p>
-                    While this may initially seem less convenient
+                    While this may initially seem less convenient, 
                     there are benefits to opting into returning maps
                     in transit-js.
                 </p>
@@ -115,8 +115,8 @@ m["foo"]</textarea>
                 <p>
                     transit-js hash maps not only support the
                     proposed <a target="_blank" href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">ECMAScript
-                    6 Map interface</a>, look up is based on value not
-                    reference which subsumes the standard behavior.
+                    6 Map interface</a>, look up is based on value instead of 
+                    reference, but this feature still supports the standard behavior.
                 </p>
                 <textarea id="complex-key">var m = transit.map([new Date(0), "Works!"]);
 m.get(new Date(0));</textarea>
