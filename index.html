@@ -309,7 +309,9 @@ ret;</textarea>
                     slower than <code>JSON.parse</code>. Note the
                     transit-js <code>read</code> timings
                     <em>include</em> <code>JSON.parse</code> in
-                    addition to hydration:
+                    addition to hydration. The second row includes
+                    the cost of supplying a <code>JSON.parse</code> hydration
+                    function to give further context.
                 </p>
                 <center>
                     <table width="100%" style="padding: 10px; border: 1px dashed #ddd">
@@ -321,6 +323,9 @@ ret;</textarea>
                         <tbody>
                             <tr>
                                 <td><code>JSON.parse</code></td><td>89K</td><td id="json-perf"></td>
+                            </tr>
+                            <tr>
+                                <td><code>JSON.parse w/ hydrate</code></td><td>89K</td><td id="json-hyd-perf"></td>
                             </tr>
                             <tr>
                                 <td><code>JSON.parse Transit JSON</code></td><td>53K</td><td id="transit-json-perf"></td>
@@ -354,6 +359,15 @@ ret;</textarea>
                }
                return (new Date())-s;
             }
+            function timeJSONHydrateParse() {
+               var s = new Date();
+               for(var i = 0; i < 100; i++) {
+                 JSON.parse(seattle, function(k, v) {
+                   return v;
+                 });
+               }
+               return (new Date())-s;
+            }
             function timeTransitJSONParse() {
                var s = new Date();
                for(var i = 0; i < 100; i++) {
@@ -380,9 +394,11 @@ ret;</textarea>
                }
 
                var jtime = timeJSONParse(),
+                   jhtime = timeJSONHydrateParse(),
                    tjtime = timeTransitJSONParse(),
                    ttime = timeTransitRead();
                document.getElementById("json-perf").innerHTML = (jtime/100) + "ms";
+               document.getElementById("json-hyd-perf").innerHTML = (jhtime/100) + "ms";
                document.getElementById("transit-json-perf").innerHTML = (tjtime/100) + "ms";
                document.getElementById("transit-perf").innerHTML = (ttime/100) + "ms";
             }
