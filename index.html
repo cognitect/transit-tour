@@ -337,6 +337,17 @@ ret;</textarea>
                     </table>
                 </center>
                 <button onclick="report()">Time</button>
+                <p>
+                    These numbers demonstrate that in several browsers
+                    parsing a smaller amount of JSON data encoded as
+                    arrays is often significantly faster and in the
+                    saved time it is possible to hydrate keys and
+                    values and compare favorably to JSON parsing
+                    of plain JSON data. Even in the case of browsers
+                    like Safari and Firefox, transit-js <code>read</code>
+                    compares quite well to <code>JSON.parse</code> supplied with
+                    a hydration function (which does not permit key hydration).
+                </p>
             </div>
         </center>
 
