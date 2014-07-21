@@ -171,9 +171,9 @@ s.has("bird");</textarea>
                     Yet we can read it and if we write it back out it remains
                     intact.
                 </p>
-                <textarea id="tagged-unknown">var r = transit.reader("json");
-    l = r.read('{"~#line":[0,0,100,100]}');
-var w = transit.writer("json-verbose");
+                <textarea id="tagged-unknown">var r = transit.reader("json"),
+    l = r.read('{"~#line":[0,0,100,100]}'),
+    w = transit.writer("json-verbose");
 w.write(l);</textarea>
                 <button onclick="evaluate('tagged-unknown')">Eval</button>
                 <p>
@@ -238,6 +238,7 @@ w.write(m);</textarea>
                   }
               }
             });
+
 r.read('[{"~#point":[0.5,1.5]}]');</textarea>
                 <button onclick="evaluate('read-handler')">Eval</button>
                 <h4>Write handlers</h4>
@@ -254,6 +255,7 @@ r.read('[{"~#point":[0.5,1.5]}]');</textarea>
     w     = transit.writer("json", {
               "handlers": transit.map([Point, ph])
             });
+
 w.write([new Point(0.5,1.5),new Point(1.5,2.5)]);</textarea>
                 <button onclick="evaluate('write-handler')">Eval</button>
                 <p>
