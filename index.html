@@ -301,17 +301,21 @@ ret;</textarea>
                     data. You can view the
                     JSON <a target="_blank" href="resources/seattle.json">here</a> and
                     the Transit
-                    JSON <a target="_blank" href="resources/seattle.transit.json">here</a>. Under <a target="_blank" href="http://nodejs.org">Node.js</a>
+                    JSON <a target="_blank"
+                    href="resources/seattle.transit.json">here</a>. Under <a target="_blank"
+                    href="http://nodejs.org">Node.js</a> and Chrome 36
                     transit-js <code>read</code> slightly outperforms
-                    <code>JSON.parse</code> in this case. Under Chrome
-                    35, Opera 22, Internet Explorer 11, 10, and 9
+                    <code>JSON.parse</code> in this case. Opera 22,
+                    Internet Explorer 11, 10, and 9
                     transit-js <code>read</code> is only slightly
                     slower than <code>JSON.parse</code>. Note the
                     transit-js <code>read</code> timings
                     <em>include</em> <code>JSON.parse</code> in
-                    addition to hydration. The second row includes
-                    the cost of supplying a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse</code> hydration (reviver)
-                    function</a> to give further context.
+                    addition to hydration. The second row includes the
+                    cost of supplying
+                    a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse</code>
+                    hydration (reviver) function</a> to give further
+                    context.
                 </p>
                 <center>
                     <table width="100%" style="padding: 10px; border: 1px dashed #ddd">
