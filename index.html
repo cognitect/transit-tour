@@ -306,7 +306,7 @@ ret;</textarea>
                     href="http://nodejs.org">Node.js</a> and Chrome 36
                     transit-js <code>read</code> slightly outperforms
                     <code>JSON.parse</code> in this case. Opera 22,
-                    Internet Explorer 11, 10, and 9
+                    Internet Explorer 11, and 10
                     transit-js <code>read</code> is only slightly
                     slower than <code>JSON.parse</code>. Note the
                     transit-js <code>read</code> timings
@@ -346,11 +346,13 @@ ret;</textarea>
                     parsing a smaller amount of JSON data encoded as
                     arrays is often significantly faster and in the
                     saved time it is possible to hydrate keys and
-                    values and compare favorably to JSON parsing
-                    of plain JSON data. Even in the case of browsers
-                    like Safari and Firefox, transit-js <code>read</code>
-                    compares quite well to <code>JSON.parse</code> supplied with
-                    a hydration function (which of course does not permit key hydration).
+                    values and compare favorably to JSON parsing of
+                    plain JSON data. Even in the case of browsers like
+                    Internet Explorer 9, Safari and Firefox,
+                    transit-js <code>read</code> compares quite well
+                    to <code>JSON.parse</code> supplied with a
+                    hydration function (which of course does not
+                    permit key hydration).
                 </p>
             </div>
         </center>
