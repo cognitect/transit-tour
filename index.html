@@ -152,14 +152,14 @@ m.get({first:"John",last:"McCarthy"});</textarea>
                 <p>
                     Transit also supports non-scalar values beyond
                     arrays and maps via tagged values.  Tagged values
-                    are represented as JSON objects with a
-                    single key-value pair. The object key is a tag - a
-                    string prefixed with
+                    are represented as a single key-value pair -
+                    either a JSON object or a two element array. The
+                    key is a tag - a string prefixed with
                     <code>~#</code>. The value is a Transit value that
-                    can be further interpreted by a user-supplied tagged value
-                    handler, after being decoded by Transit itself.
-                    Transit ships with several tagged values built in
-                    including ES6 compliant sets:
+                    can be further interpreted by a user-supplied
+                    tagged value handler, after being decoded by
+                    Transit itself.  Transit ships with several tagged
+                    values built in including ES6 compliant sets:
                 </p>
                 <textarea id="tagged-read">var r = transit.reader("json"),
     s = r.read('{"~#set":["cat","dog","bird"]}');
