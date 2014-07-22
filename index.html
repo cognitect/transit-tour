@@ -139,7 +139,10 @@ m.get(new Date(0));</textarea>
                 <p>
                     transit-js maps and sets may be used &agrave;
                     la carte.  They have been written with performance
-                    in mind and outperform existing ES6 Map/Set shims:
+                    in mind - they are competitive with plain JavaScript objects,
+                    they outperform existing ES6 Map/Set shims and they are
+                    comparable in many cases to pending native implementations
+                    of Map and Set:
                 </p>
                 <textarea id="complex-key-read-2">var m = transit.map([{first:"John",last:"McCarthy"},
                      new Date(-1335729600000)]);
@@ -177,7 +180,7 @@ s.has("bird");</textarea>
 w.write(l);</textarea>
                 <button onclick="evaluate('tagged-unknown')">Eval</button>
                 <p>
-                    This bring us to the topic of encoding transit values.
+                    This brings us to the topic of encoding transit values.
                 </p>
                 <h3>Creating a Writer</h3>
                 <p>
@@ -316,7 +319,7 @@ ret;</textarea>
                     addition to hydration. The second row includes the
                     cost of supplying
                     a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse</code>
-                    hydration (reviver) function that simply returns the value</a> to give further
+                    hydration (reviver) function</a> that simply returns the value to give further
                     context.
                 </p>
                 <center>
