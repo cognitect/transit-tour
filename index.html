@@ -113,10 +113,10 @@ m["foo"]</textarea>
                 </p>
                 <h3>Maps</h3>
                 <p>
-                    transit-js hash maps not only support the
+                    transit-js hash maps support most of the
                     proposed <a target="_blank" href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">ECMAScript
-                    6 Map interface</a>, look up is based on value instead of 
-                    reference, but this feature still supports the standard behavior.
+                    6 Map interface</a>, however look up is based on value instead of 
+                    reference:
                 </p>
                 <textarea id="complex-key">var m = transit.map([new Date(0), "Works!"]);
 m.get(new Date(0));</textarea>
@@ -159,7 +159,7 @@ m.get({first:"John",last:"McCarthy"});</textarea>
                     can be further interpreted by a user-supplied
                     tagged value handler, after being decoded by
                     Transit itself.  Transit ships with several tagged
-                    values built in including ES6 compliant sets:
+                    values built in including ES6-like sets:
                 </p>
                 <textarea id="tagged-read">var r = transit.reader("json"),
     s = r.read('{"~#set":["cat","dog","bird"]}');
